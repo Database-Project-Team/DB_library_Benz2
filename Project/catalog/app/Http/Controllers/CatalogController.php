@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Products;
+use DB;
 
 class CatalogController extends Controller
 {
@@ -13,10 +14,44 @@ class CatalogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    //public function index()
+    //{
+        //$products = Products::all()->toArray();
+        //return view('user.catalog',compact('products'));
+    //}
+
+    public function index(Request $request)
     {
-        $products = Products::all()->toArray();
-        return view('user.catalog',compact('products'));
+     if(request()->ajax())
+     {
+      if(!empty($request->filter_vendor))
+      {
+       $data = DB::table('products')
+         ->select('productName', 'productScale', 'productVendor')
+         ->where('productScale', $request->filter_scale)
+         ->where('productVendor', $request->filter_vendor)
+         ->get();
+      }
+      else
+      {
+       $data = DB::table('products')
+         ->select('productName', 'productScale', 'productVendor')
+         ->get();
+      }
+      return datatables()->of($data)->make(true);
+     }
+     $productScale = DB::table('products')
+        ->select('productScale')
+        ->groupBy('productScale')
+        ->orderBy('productScale', 'ASC')
+        ->get();
+     $productVendor = DB::table('products')
+        ->select('productVendor')
+        ->groupBy('productVendor')
+        ->orderBy('productVendor', 'ASC')
+        ->get();
+     $products = Products::all()->toArray();
+     return view('user.catalog', compact('productScale','productVendor','products') );
     }
 
     /**

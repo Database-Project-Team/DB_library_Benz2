@@ -91,9 +91,8 @@
       <div class="form-group">
         <select name="filter_vendor" id="filter_vendor" class="form-control" required>
         <option value="">Select Vendor</option>
-        @foreach($products as $row)
-
-        <option value="{{$row['productVendor']}}">{{$row['productVendor']}}</option>
+        @foreach($productVendor as $row)
+        <option value="{{ $row->productVendor }}">{{ $row->productVendor }}</option>
 
         @endforeach
         </select>
@@ -102,9 +101,8 @@
       <div class="form-group">
         <select name="filter_scale" id="filter_scale" class="form-control" required>
         <option value="">Select Scale</option>
-        @foreach($products as $row)
-
-        <option value="{{$row['productScale']}}">{{$row['productScale']}}</option>
+        @foreach($productScale as $row)
+        <option value="{{ $row->productScale }}">{{ $row->productScale }}</option>
 
         @endforeach
         </select>
@@ -128,7 +126,7 @@
           <div class="card mb-4 shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
             <div class="card-body">
-              <p class="card-text">{{$row['productName']}},{{$row['productScale']}},{{$row['productVendor']}}</p>
+              <p class="card-text">{{$row['productName']}}<br>Scale : {{$row['productScale']}}<br>Vendor : {{$row['productVendor']}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
