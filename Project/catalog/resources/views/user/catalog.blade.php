@@ -75,7 +75,7 @@
     <div class="container">
       <h1 class="jumbotron-heading">Catalog</h1>
       <p class="lead text-muted">Buy anything you like.</p>
-
+      <!--
       <form action="{{url('catalog')}}" method="post">
         {{csrf_field()}}
       <div class="input-group">
@@ -85,10 +85,37 @@
         <input type="text" name="vendor" class="form-control" placeholder="Vendor">
         <input type="text" name="scale" class="form-control" placeholder="Scale">
         <input type="submit" class="btn btn-primary" name="" value="Find">
+      </div>
+      </form>
+      -->
+      <div class="form-group">
+        <select name="filter_vendor" id="filter_vendor" class="form-control" required>
+        <option value="">Select Vendor</option>
+        @foreach($products as $row)
 
+        <option value="{{$row['productVendor']}}">{{$row['productVendor']}}</option>
+
+        @endforeach
+        </select>
       </div>
 
-      </form>
+      <div class="form-group">
+        <select name="filter_scale" id="filter_scale" class="form-control" required>
+        <option value="">Select Scale</option>
+        @foreach($products as $row)
+
+        <option value="{{$row['productScale']}}">{{$row['productScale']}}</option>
+
+        @endforeach
+        </select>
+      </div>
+
+      <div class="form-group" align="center">
+        <button type="button" name="filter" id="filter" class="btn btn-info">Filter</button>
+
+        <button type="button" name="reset" id="reset" class="btn btn-default">Reset</button>
+      </div>
+
     </div>
   </section>
 
