@@ -22,24 +22,7 @@ class CatalogController extends Controller
 
     public function index(Request $request)
     {
-     if(request()->ajax())
-     {
-      if(!empty($request->filter_vendor))
-      {
-       $data = DB::table('products')
-         ->select('productName', 'productScale', 'productVendor')
-         ->where('productScale', $request->filter_scale)
-         ->where('productVendor', $request->filter_vendor)
-         ->get();
-      }
-      else
-      {
-       $data = DB::table('products')
-         ->select('productName', 'productScale', 'productVendor')
-         ->get();
-      }
-      return datatables()->of($data)->make(true);
-     }
+      //$products = Products::all()->toArray();
      $productScale = DB::table('products')
         ->select('productScale')
         ->groupBy('productScale')
@@ -50,7 +33,9 @@ class CatalogController extends Controller
         ->groupBy('productVendor')
         ->orderBy('productVendor', 'ASC')
         ->get();
-     $products = Products::all()->toArray();
+     $products = DB::table('products')
+        ->select('productName','productScale','productVendor')
+        ->get();
      return view('user.catalog', compact('productScale','productVendor','products') );
     }
 
