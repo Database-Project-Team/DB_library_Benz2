@@ -22,21 +22,42 @@ class CatalogController extends Controller
 
     public function index(Request $request)
     {
-      //$products = Products::all()->toArray();
-     $productScale = DB::table('products')
-        ->select('productScale')
-        ->groupBy('productScale')
-        ->orderBy('productScale', 'ASC')
-        ->get();
-     $productVendor = DB::table('products')
-        ->select('productVendor')
-        ->groupBy('productVendor')
-        ->orderBy('productVendor', 'ASC')
-        ->get();
-     $products = DB::table('products')
-        ->select('productName','productScale','productVendor')
-        ->get();
-     return view('user.catalog', compact('productScale','productVendor','products') );
+        //$products = Products::all()->toArray();
+
+        $productScale = DB::table('products')
+          ->select('productScale')
+          ->groupBy('productScale')
+          ->orderBy('productScale', 'ASC')
+          ->get();
+        $productVendor = DB::table('products')
+          ->select('productVendor')
+          ->groupBy('productVendor')
+          ->orderBy('productVendor', 'ASC')
+          ->get();
+
+
+        //  if(request()->ajax())
+        //  {
+          if(!empty($request->filter_scale) or !empty($request->filter_vendor))
+          {
+            $data = DB::table('products')
+              ->select('productName','productScale','productVendor')
+              ->where('productScale', $request->filter_scale)
+              ->where('productVendor', $request->filter_vendor)
+              ->get();
+          }
+          else
+          {
+            $data = DB::table('products')
+              ->select('productName','productScale','productVendor')
+              ->get();
+          }
+        //  return datatables()->of($data)->make(true);
+        //  }
+        //  return view('user.catalog', compact('productScale','productVendor') );
+
+          return view('user.catalog', compact('productScale','productVendor','data') );
+
     }
 
     /**

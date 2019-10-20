@@ -17,7 +17,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
 
     <!-- Bootstrap core CSS -->
-<link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
     <style>
@@ -38,6 +38,13 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   </head>
   <body>
     <header>
@@ -75,6 +82,7 @@
     <div class="container">
       <h1 class="jumbotron-heading">Catalog</h1>
       <p class="lead text-muted">Buy anything you like.</p>
+
       <!--
       <form action="{{url('catalog')}}" method="post">
         {{csrf_field()}}
@@ -88,6 +96,13 @@
       </div>
       </form>
       -->
+
+      <!-- <div class="form-group" align="center">
+        <button type="button" name="filter" id="filter" class="btn btn-info">Filter</button>
+
+        <button type="button" name="reset" id="reset" class="btn btn-default">Reset</button>
+      </div> -->
+
       <div class="form-group">
         <select name="filter_vendor" id="filter_vendor" class="form-control" required>
         <option value="">Select Vendor</option>
@@ -108,20 +123,44 @@
         </select>
       </div>
 
+      <form action="{{url('catalog')}}" method="post">
+        {{csrf_field()}}
       <div class="form-group" align="center">
-        <button type="button" name="filter" id="filter" class="btn btn-info">Filter</button>
+        <input type="submit" name="filter" id="filter" class="btn btn-info" value="Filter">
 
-        <button type="button" name="reset" id="reset" class="btn btn-default">Reset</button>
+        <input type="submit" name="reset" id="reset" class="btn btn-default" value="Reset">
       </div>
+      </form>
+
+      <!-- <form action="{{url('catalog')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="filter" id="filter" class="btn btn-info" value="Filter">
+
+        <input type="submit" name="reset" id="reset" class="btn btn-default" value="Reset">
+      </div>
+      </form> -->
 
     </div>
   </section>
 
-  <div class="album py-5 bg-light">
+  <!-- <div class="table-responsive">
+    <table id="customer_data" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Scale</th>
+                            <th>Vendor</th>
+                        </tr>
+                    </thead>
+                </table>
+   </div> -->
+
+   <div class="album py-5 bg-light">
     <div class="container">
 
       <div class="row">
-        @foreach($products as $row)
+        @foreach($data as $row)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -153,22 +192,63 @@
 
   </div>
 </footer>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 </html>
 
-<script>
+<!-- <script>
 $(document).ready(function(){
+    fill_datatable();
+
+    function fill_datatable(filter_scale = '', filter_vendor = '')
+    {
+        var dataTable = $('#customer_data').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax:{
+                      url: "{{ route('catalog.index') }}",
+                      data:{filter_scale:filter_scale, filter_vendor:filter_vendor}
+            },
+            columns: [
+                {
+                    data:'productName',
+                    name:'productName'
+                },
+                {
+                    data:'productScale',
+                    name:'productScale'
+                },
+                {
+                    data:'productVendor',
+                    name:'productVendor'
+                }
+            ]
+
+            });
+    }
 
     $('#filter').click(function(){
         var filter_scale = $('#filter_scale').val();
         var filter_vendor = $('#filter_vendor').val();
+
+        if(filter_scale != '' &&  filter_vendor != '')
+        {
+            $('#customer_data').DataTable().destroy();
+            fill_datatable(filter_scale, filter_vendor);
+        }
+        else
+        {
+            alert('Select Both filter option');
+        }
     });
 
     $('#reset').click(function(){
-        $('#filter_gender').val('');
-        $('#filter_country').val('');
+        $('#filter_scale').val('');
+        $('#filter_vendor').val('');
+        $('#customer_data').DataTable().destroy();
+        fill_datatable();
     });
 
 });
-</script>
+</script> -->
