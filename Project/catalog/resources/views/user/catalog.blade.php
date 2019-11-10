@@ -103,7 +103,9 @@
         <button type="button" name="reset" id="reset" class="btn btn-default">Reset</button>
       </div> -->
 
-      <div class="form-group">
+
+      <!-- This is filter -->
+      <!-- <div class="form-group">
         <select name="filter_vendor" id="filter_vendor" class="form-control" required>
         <option value="">Select Vendor</option>
         @foreach($productVendor as $row)
@@ -121,25 +123,164 @@
 
         @endforeach
         </select>
+      </div> -->
+      <!-- End filter -->
+
+
+
+      <form action="{{url('catalog/cat10')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:10" id="1:10" class="btn btn-info" value="1:10">
       </div>
+      </form>
+
+      <form action="{{url('catalog/cat12')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:12" id="1:12" class="btn btn-info" value="1:12">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/cat18')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:18" id="1:18" class="btn btn-info" value="1:18">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/cat24')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:24" id="1:24" class="btn btn-info" value="1:24">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/cat32')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:32" id="1:32" class="btn btn-info" value="1:32">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/cat50')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:50" id="1:50" class="btn btn-info" value="1:50">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/cat72')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:72" id="1:72" class="btn btn-info" value="1:72">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/cat700')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="1:700" id="1:700" class="btn btn-info" value="1:700">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v1')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v1" id="v1" class="btn btn-info" value="Autoart Studio Design">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v2')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v2" id="v2" class="btn btn-info" value="Carousel DieCast Legends">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v3')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v3" id="v3" class="btn btn-info" value="Classic Metal Creations">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v4')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v4" id="v4" class="btn btn-info" value="Exoto Designs">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v5')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v5" id="v5" class="btn btn-info" value="Gearbox Collectibles">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v6')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v6" id="v6" class="btn btn-info" value="Highway 66 Mini Classics">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v7')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v7" id="v7" class="btn btn-info" value="Min Lin Diecast">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v8')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v8" id="v8" class="btn btn-info" value="Motor City Art Classics">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v9')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v9" id="v9" class="btn btn-info" value="Red Start Diecast">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v10')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v10" id="v10" class="btn btn-info" value="Second Gear Diecast">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v11')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v11" id="v11" class="btn btn-info" value="Studio M Art Models">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v12')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v12" id="v12" class="btn btn-info" value="Unimax Art Galleries">
+      </div>
+      </form>
+
+      <form action="{{url('catalog/v13')}}" method="post">
+        {{csrf_field()}}
+      <div class="form-group" align="center">
+        <input type="submit" name="v13" id="v13" class="btn btn-info" value="Welly Diecast Productions">
+      </div>
+      </form>
 
       <form action="{{url('catalog')}}" method="post">
         {{csrf_field()}}
       <div class="form-group" align="center">
-        <input type="submit" name="filter" id="filter" class="btn btn-info" value="Filter">
-
         <input type="submit" name="reset" id="reset" class="btn btn-default" value="Reset">
       </div>
       </form>
-
-      <!-- <form action="{{url('catalog')}}" method="post">
-        {{csrf_field()}}
-      <div class="form-group" align="center">
-        <input type="submit" name="filter" id="filter" class="btn btn-info" value="Filter">
-
-        <input type="submit" name="reset" id="reset" class="btn btn-default" value="Reset">
-      </div>
-      </form> -->
 
     </div>
   </section>
@@ -160,12 +301,12 @@
     <div class="container">
 
       <div class="row">
-        @foreach($data as $row)
+        @foreach($products as $row)
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
             <div class="card-body">
-              <p class="card-text">{{ $row->productName }}<br>Scale : {{ $row->productScale }}<br>Vendor : {{ $row->productVendor }}</p>
+              <p class="card-text">{{ $row['productName'] }}<br>Scale : {{ $row['productScale'] }}<br>Vendor : {{ $row['productVendor'] }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -196,6 +337,13 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script></body>
 </html>
+
+<script>
+  ajax:{
+          url: "{{url('catalog/cat')}}",
+          data:{filter_scale:filter_scale, filter_vendor:filter_vendor}
+        }
+</script>
 
 <!-- <script>
 $(document).ready(function(){
