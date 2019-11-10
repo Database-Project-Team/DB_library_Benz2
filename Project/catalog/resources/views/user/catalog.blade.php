@@ -35,6 +35,17 @@
           font-size: 3.5rem;
         }
       }
+
+      .button-container form,
+      .button-container form div {
+        display: inline-block;
+      }
+
+      .button-container input {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="album.css" rel="stylesheet">
@@ -126,7 +137,7 @@
       </div> -->
       <!-- End filter -->
 
-
+      <div class="button-container">
 
       <form action="{{url('catalog/cat10')}}" method="post">
         {{csrf_field()}}
@@ -183,6 +194,11 @@
         <input type="submit" name="1:700" id="1:700" class="btn btn-info" value="1:700">
       </div>
       </form>
+
+      </div>
+
+
+      <div class="button-container">
 
       <form action="{{url('catalog/v1')}}" method="post">
         {{csrf_field()}}
@@ -274,6 +290,8 @@
         <input type="submit" name="v13" id="v13" class="btn btn-info" value="Welly Diecast Productions">
       </div>
       </form>
+
+      </div>
 
       <form action="{{url('catalog')}}" method="post">
         {{csrf_field()}}
